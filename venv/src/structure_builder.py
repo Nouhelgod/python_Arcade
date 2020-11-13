@@ -2,6 +2,7 @@ import arcade
 
 import spriter
 
+
 class Engine(arcade.Window):
     def place_fountain(self, x, y):
         x -= 1

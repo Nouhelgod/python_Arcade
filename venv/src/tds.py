@@ -29,6 +29,7 @@ class Engine(arcade.Window):
         self.list_player = None
         self.list_tile = None
         self.list_wall = None
+        self.list_water = None
         
         # Sprite images initiation
         self.sprite_player = None
@@ -72,6 +73,7 @@ class Engine(arcade.Window):
         self.list_tile.draw()
         self.list_wall.draw()
         self.list_player.draw()
+        self.list_water.draw()
         
         
 def main():

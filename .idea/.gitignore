@@ -1,0 +1,14 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../:\python_Arcade\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+/Include/
+/Lib/
+/Scripts/
+/src/__pycache__/
+/src/sprites/flipped/
+/src/sprites/scaled/

@@ -13,6 +13,6 @@ class Engine(arcade.Window):
         water_colission = arcade.check_for_collision_with_list(self.sprite_player, self.list_water)
 
         if water_colission != []:
-            self.player.speed = 2
+            self.player.speed = self.player.speed_water
         else:
-            self.player.speed = 5
+            self.player.speed = self.player.initial_speed

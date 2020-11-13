@@ -1,0 +1,14 @@
+
+Versions/12-11-20 14-09/src/tds.py
+Versions/12-11-20 14-09/src/structure_builder.py
+Versions/12-11-20 14-09/src/sprites/wall.PNG
+Versions/12-11-20 14-09/src/sprites/wall_corner.png
+Versions/12-11-20 14-09/src/sprites/scaled/wall_x3.png
+.idea/
+Versions/
+venv/Include
+venv/Lib
+venv/Scripts
+venv/src/__pycache__
+venv/src/sprites/flipped
+venv/src/sprites/scaled

@@ -25,6 +25,10 @@ class Engine(arcade.Window):
         elif key == arcade.key.RIGHT:
             self.RIGHT = False
 
+        # Reset
+        if key == arcade.key.R:
+            self.level.Engine.setup(self)
+
     def update(self):
         self.sprite_player.change_y = 0
         self.sprite_player.change_x = 0

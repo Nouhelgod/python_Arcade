@@ -6,7 +6,7 @@ import player_object
 
 
 class Engine(arcade.Window):
-    def setup(self, SCREEN_W, SCREEN_H, SCREEN_SCALE):
+    def setup(self):
 
         self.list_tile = arcade.SpriteList(use_spatial_hash=True)
         self.list_wall = arcade.SpriteList(use_spatial_hash=True)
@@ -15,15 +15,15 @@ class Engine(arcade.Window):
         # Player
         self.list_player = arcade.SpriteList()
 
-        self.sprite_player = player_object.Player(SCREEN_SCALE)
-        self.sprite_player.center_x = SCREEN_W // 2
-        self.sprite_player.center_y = SCREEN_H // 2
+        self.sprite_player = player_object.Player(self.SCREEN_SCALE)
+        self.sprite_player.center_x = self.SCREEN_W // 2
+        self.sprite_player.center_y = self.SCREEN_H // 2
         self.list_player.append(self.sprite_player)
 
         # Grass
         grass_img = spriter.scale('sprites/grass.png', self.SCREEN_SCALE)
-        for x in range(0, SCREEN_W, self.cell):
-            for y in range(0, SCREEN_H, self.cell):
+        for x in range(0, self.SCREEN_W, self.cell):
+            for y in range(0, self.SCREEN_H, self.cell):
                 grass = arcade.Sprite(grass_img)
                 grass.center_x = x
                 grass.center_y = y

@@ -24,6 +24,11 @@ class Engine(arcade.Window):
 
         self.cell = self.SCREEN_SCALE * self.SPRITE_RESOLUTION
 
+        # Window parameters initiation
+        self.SCREEN_W = SCREEN_W
+        self.SCREEN_H = SCREEN_H
+        self.SCREEN_TITLE = SCREEN_TITLE
+
         # Sprite lists initiation
         self.list_player = None
         self.list_tile = None
@@ -54,8 +59,13 @@ class Engine(arcade.Window):
         self.view_bottom = 0
         self.view_left = 0
 
+        # Level initiation
+        self.level = None
+
+
     def setup(self):
-        setup_test.Engine.setup(self, SCREEN_W, SCREEN_H, SCREEN_SCALE)
+        self.level = setup_test
+        self.level.Engine.setup(self)
 
     def on_key_press(self, key, modifiers):
         self.player_controls.key_press(self, key, modifiers)
@@ -69,9 +79,7 @@ class Engine(arcade.Window):
         self.sprite_player.update()
         self.physics.update()
 
-
-
-        camera_controls.Engine.camera_follow(self, SCREEN_H, SCREEN_W)
+        camera_controls.Engine.camera_follow(self)
 
     def on_draw(self):
         arcade.start_render()

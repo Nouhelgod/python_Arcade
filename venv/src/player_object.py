@@ -41,8 +41,11 @@ class Player(arcade.Sprite):
             self.texture = self.textures[0]
         elif self.change_x > 0:
             self.texture = self.textures[1]
-        elif self.change_x == self.change_y:
-            self.texture = self.textures[3]
+        # elif self.change_x == self.change_y:
+        #     self.texture = self.textures[3]
         elif self.change_y > 0:
             self.texture = self.textures[2]
+
+        elif self.change_y < 0:
+            self.texture = self.textures[3]
 

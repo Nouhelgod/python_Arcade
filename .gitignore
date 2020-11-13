@@ -12,3 +12,4 @@ venv/Scripts
 venv/src/__pycache__
 venv/src/sprites/flipped
 venv/src/sprites/scaled
+venv/src/test.py

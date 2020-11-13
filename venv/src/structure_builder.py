@@ -39,3 +39,22 @@ class Engine(arcade.Window):
                 self.list_tile.append(sprite_fountain[i])
             else:
                 self.list_wall.append(sprite_fountain[i])
+
+
+    def place_pound(self, x, y, width, height):
+        x, y = x - 1, y - 1
+        w, h = width , height
+
+        sprite_water = [None] * w
+        for i in range(w):
+            sprite_water[i] = [None] * h
+
+        water_img = spriter.scale('sprites/water.png', self.SCREEN_SCALE)
+
+        for pos_y in range(len(sprite_water[0])):
+            for pos_x in range(len(sprite_water)):
+                sprite_water[pos_x][pos_y] = (arcade.Sprite(water_img))
+                sprite_water[pos_x][pos_y].center_x = self.cell * (x + pos_x)
+                sprite_water[pos_x][pos_y].center_y = self.cell * (y + pos_y)
+                self.list_water.append(sprite_water[pos_x][pos_y])
+

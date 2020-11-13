@@ -1,11 +1,10 @@
 import arcade
 from PIL import Image
 
-# git test 1
-
 import setup_test
 import player_controls
 import camera_controls
+import tile_colissions
 
 SCREEN_W = 1280
 SCREEN_H = 720
@@ -43,6 +42,10 @@ class Engine(arcade.Window):
         self.LEFT = False
         self.RIGHT = False
 
+        # Tile colissions initiation
+        self.colissions_tile = tile_colissions.Engine
+        self.colissions_tile.__init__(self)
+
         # Player controls initiation
         self.player_controls = player_controls.Engine
         self.player_controls.__init__(self)
@@ -61,10 +64,12 @@ class Engine(arcade.Window):
         self.player_controls.key_release(self, key, modifiers)
 
     def on_update(self, delta_time: float):
-        # self.player_controls = player_controls.Engine(self)
         self.player_controls.update(self)
+        self.colissions_tile.update(self)
         self.sprite_player.update()
         self.physics.update()
+
+
 
         camera_controls.Engine.camera_follow(self, SCREEN_H, SCREEN_W)
 

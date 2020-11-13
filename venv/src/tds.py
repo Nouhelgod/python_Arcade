@@ -7,14 +7,12 @@ import setup_test
 import player_controls
 import camera_controls
 
-SCREEN_W = 640
-SCREEN_H = 480
+SCREEN_W = 1280
+SCREEN_H = 720
 SCREEN_TITLE = 'Build'
 SPRITE_RESOLUTION = 16
 
-SCREEN_SCALE = 2
-
-# hello github! 2
+SCREEN_SCALE = 4
 
 class Engine(arcade.Window):
     def __init__(self):

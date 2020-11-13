@@ -6,27 +6,15 @@ import player_object
 
 
 class Engine(arcade.Window):
-    # def __init__(self):
-    #     self.player = player_object.param
-
     def setup(self, SCREEN_W, SCREEN_H, SCREEN_SCALE):
 
         # Player
         self.list_player = arcade.SpriteList()
-        self.SCREEN_SCALE = SCREEN_SCALE
-        print(f'{type(self.SCREEN_SCALE)} setup')
-        player_img = spriter.scale('sprites/player.png', self.SCREEN_SCALE)
-        self.sprite_player = arcade.Sprite(player_img)
-        self.sprite_player.center_x = 0
-        self.sprite_player.center_y = 0
+
+        self.sprite_player = player_object.Player(SCREEN_SCALE)
+        self.sprite_player.center_x = SCREEN_W // 2
+        self.sprite_player.center_y = SCREEN_H // 2
         self.list_player.append(self.sprite_player)
-
-        # self.sprite_player = player_object.Player(self.SCREEN_SCALE)
-        # self.sprite_player.center_x = 1
-        # self.sprite_player.center_y = 1
-        # self.list_player.append(self.sprite_player)
-
-
 
 
         # Grass

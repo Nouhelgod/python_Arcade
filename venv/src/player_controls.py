@@ -4,7 +4,6 @@ import player_object
 class Engine(arcade.Window):
     def __init__(self):
         self.player = player_object.param()
-        print(self.player.speed)
 
     def key_press(self, key, modifiers):
         if key == arcade.key.UP:
@@ -27,7 +26,6 @@ class Engine(arcade.Window):
             self.RIGHT = False
 
     def update(self):
-        # self.sprite_player = sprite_player
         self.sprite_player.change_y = 0
         self.sprite_player.change_x = 0
 
@@ -42,5 +40,3 @@ class Engine(arcade.Window):
                 self.sprite_player.change_x = self.player.speed
             elif self.LEFT and not self.RIGHT:
                 self.sprite_player.change_x = -self.player.speed
-
-        #self.player.update()

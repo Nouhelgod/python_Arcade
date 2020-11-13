@@ -64,6 +64,7 @@ class Engine(arcade.Window):
     def on_update(self, delta_time: float):
         # self.player_controls = player_controls.Engine(self)
         self.player_controls.update(self)
+        self.sprite_player.update()
         self.physics.update()
 
         camera_controls.Engine.camera_follow(self, SCREEN_H, SCREEN_W)

@@ -14,7 +14,7 @@ SPRITE_RESOLUTION = 16
 
 SCREEN_SCALE = 2
 
-# hello github!
+# hello github! 2
 
 class Engine(arcade.Window):
     def __init__(self):

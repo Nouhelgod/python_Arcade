@@ -5,9 +5,10 @@ import setup_test
 import player_controls
 import camera_controls
 import tile_collisions
+import UI
 
-SCREEN_W = 1280
-SCREEN_H = 720
+SCREEN_W = 640
+SCREEN_H = 480
 SCREEN_TITLE = 'Build'
 SPRITE_RESOLUTION = 16
 
@@ -62,6 +63,15 @@ class Engine(arcade.Window):
         # Level initiation
         self.level = None
 
+        # GUI initiation
+        self.UI = UI
+
+        # GUI text initiation
+        self.debug_shown = False
+        self.text_frame_counter = 0
+        self.text_FPS = 0
+        self.restart = [False, False]
+
 
     def setup(self):
         self.level = setup_test
@@ -76,10 +86,12 @@ class Engine(arcade.Window):
     def on_update(self, delta_time: float):
         self.player_controls.update(self)
         self.collisions_tile.update(self)
+        self.UI.Engine.update(self, delta_time)
         self.sprite_player.update()
         self.physics.update()
 
         camera_controls.Engine.camera_follow(self)
+
 
     def on_draw(self):
         arcade.start_render()
@@ -87,8 +99,10 @@ class Engine(arcade.Window):
         self.list_wall.draw()
         self.list_player.draw()
         self.list_water.draw()
-        
-        
+        self.UI.Engine.draw_UI(self)
+        self.UI.Engine.draw_debug(self)
+
+
 def main():
     window = Engine()
     window.setup()

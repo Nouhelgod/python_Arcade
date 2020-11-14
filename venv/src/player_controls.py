@@ -10,7 +10,11 @@ class Engine(arcade.Window):
         self.keys_LEFT = [arcade.key.LEFT, arcade.key.A]
         self.keys_RIGHT = [arcade.key.RIGHT, arcade.key.D]
 
+        self.key_debug = arcade.key.F3
+
     def key_press(self, key, modifiers):
+
+        # Movement
         if key in self.keys_UP:
             self.UP = True
         elif key in self.keys_DOWN:
@@ -24,7 +28,10 @@ class Engine(arcade.Window):
         if key == arcade.key.R:
             self.restart[0] = True
 
+
     def key_release(self, key, modifiers):
+
+        # Movement
         if key in self.keys_UP:
             self.UP = False
         elif key in self.keys_DOWN:
@@ -41,9 +48,13 @@ class Engine(arcade.Window):
                 self.restart[1] = False
                 self.restart[0] = False
 
+        if key == self.key_debug:
+            self.debug_shown = not self.debug_shown
 
 
     def update(self):
+        self.sprite_player.center_x = int(self.sprite_player.center_x)
+        self.sprite_player.center_y = int(self.sprite_player.center_y)
         self.sprite_player.change_y = 0
         self.sprite_player.change_x = 0
 

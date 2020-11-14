@@ -5,29 +5,35 @@ class Engine(arcade.Window):
     def __init__(self):
         self.player = player_object.param()
 
+        self.keys_UP = [arcade.key.UP, arcade.key.W]
+        self.keys_DOWN = [arcade.key.DOWN, arcade.key.S]
+        self.keys_LEFT = [arcade.key.LEFT, arcade.key.A]
+        self.keys_RIGHT = [arcade.key.RIGHT, arcade.key.D]
+
     def key_press(self, key, modifiers):
-        if key == arcade.key.UP:
+        if key in self.keys_UP:
             self.UP = True
-        elif key == arcade.key.DOWN:
+        elif key in self.keys_DOWN:
             self.DOWN = True
-        elif key == arcade.key.LEFT:
+        elif key in self.keys_LEFT:
             self.LEFT = True
-        elif key == arcade.key.RIGHT:
+        elif key in self.keys_RIGHT:
             self.RIGHT = True
 
     def key_release(self, key, modifiers):
-        if key == arcade.key.UP:
+        if key in self.keys_UP:
             self.UP = False
-        elif key == arcade.key.DOWN:
+        elif key in self.keys_DOWN:
             self.DOWN = False
-        elif key == arcade.key.LEFT:
+        elif key in self.keys_LEFT:
             self.LEFT = False
-        elif key == arcade.key.RIGHT:
+        elif key in self.keys_RIGHT:
             self.RIGHT = False
 
         # Reset
         if key == arcade.key.R:
             self.level.Engine.setup(self)
+
 
     def update(self):
         self.sprite_player.change_y = 0

@@ -9,12 +9,12 @@ class Engine(arcade.Window):
         MARGIN_BOTTOM = MARGIN_TOP
         MARGIN_RIGHT = MARGIN_LEFT
 
-        b_left = self.view_left + MARGIN_LEFT
+        b_left = self.view_left + MARGIN_LEFT + self.cell
         if self.sprite_player.left < b_left:
             self.view_left -= b_left - self.sprite_player.left
             changed = True
 
-        b_right = self.view_left + self.SCREEN_W - MARGIN_RIGHT
+        b_right = self.view_left + self.SCREEN_W - MARGIN_RIGHT + self.cell//2
         if self.sprite_player.right > b_right:
             self.view_left += self.sprite_player.right - b_right
             changed = True

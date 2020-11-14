@@ -20,6 +20,10 @@ class Engine(arcade.Window):
         elif key in self.keys_RIGHT:
             self.RIGHT = True
 
+        # Restart
+        if key == arcade.key.R:
+            self.restart[0] = True
+
     def key_release(self, key, modifiers):
         if key in self.keys_UP:
             self.UP = False
@@ -30,9 +34,13 @@ class Engine(arcade.Window):
         elif key in self.keys_RIGHT:
             self.RIGHT = False
 
-        # Reset
+        # Restart
         if key == arcade.key.R:
-            self.level.Engine.setup(self)
+            if self.restart[1]:
+                self.level.Engine.setup(self)
+                self.restart[1] = False
+                self.restart[0] = False
+
 
 
     def update(self):
@@ -65,3 +73,4 @@ class Engine(arcade.Window):
             if self.DOWN and self.RIGHT:
                 self.sprite_player.change_y = -self.player.speed // 2 +1
                 self.sprite_player.change_x = self.player.speed // 2 +1
+

@@ -53,8 +53,8 @@ class Engine(arcade.Window):
 
 
     def update(self):
-        self.sprite_player.center_x = int(self.sprite_player.center_x)
-        self.sprite_player.center_y = int(self.sprite_player.center_y)
+        self.sprite_player.center_x = int(round(self.sprite_player.center_x))
+        self.sprite_player.center_y = int(round(self.sprite_player.center_y))
         self.sprite_player.change_y = 0
         self.sprite_player.change_x = 0
 

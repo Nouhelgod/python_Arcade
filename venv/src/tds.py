@@ -22,7 +22,6 @@ class Engine(arcade.Window):
         # Sprites scaling initiation
         self.SCREEN_SCALE = SCREEN_SCALE
         self.SPRITE_RESOLUTION = SPRITE_RESOLUTION
-
         self.cell = self.SCREEN_SCALE * self.SPRITE_RESOLUTION
 
         # Window parameters initiation
@@ -65,10 +64,13 @@ class Engine(arcade.Window):
 
         # GUI initiation
         self.UI = UI
+        self.debug_pos = 0
+        self.debug_margin = 5
 
         # GUI text initiation
         self.debug_shown = False
-        self.text_frame_counter = 0
+        self.text_global_frame_counter = 0
+        self.text_local_frame_counter = 0
         self.text_FPS = 0
         self.restart = [False, False]
 

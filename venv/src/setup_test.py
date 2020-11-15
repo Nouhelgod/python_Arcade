@@ -8,6 +8,9 @@ import player_object
 class Engine(arcade.Window):
     def setup(self):
 
+        # Local frame counter update
+        self.text_local_frame_counter = 0
+
         self.list_tile = arcade.SpriteList(use_spatial_hash=True)
         self.list_wall = arcade.SpriteList(use_spatial_hash=True)
         self.list_water = arcade.SpriteList(use_spatial_hash=True)

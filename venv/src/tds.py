@@ -73,6 +73,7 @@ class Engine(arcade.Window):
         self.text_local_frame_counter = 0
         self.text_FPS = 0
         self.restart = [False, False]
+        self.text_list_collisions = []
 
 
     def setup(self):

@@ -16,8 +16,22 @@ SCREEN_SCALE = 4
 
 class Engine(arcade.Window):
     def __init__(self):
+        # Game window initiation
         super().__init__(SCREEN_W, SCREEN_H, SCREEN_TITLE)
         arcade.set_background_color(arcade.csscolor.GHOST_WHITE)
+
+        # Controller initiation
+        gamepades = arcade.get_joysticks()
+        if gamepades:
+            self.gamepad = gamepades[0]
+            self.gamepad.open()
+            self.gamepad.on_joybutton_press = self.on_joybutton_press
+            self.gamepad.on_joybutton_release = self.on_joybutton_release
+            self.gamepad.on_joyhat_motion = self.on_joyhat_motion
+            self.gamepad.on_joyaxis_motion = self.on_stick_move
+        else:
+            print("There are no Joysticks")
+            self.joystick = None
 
         # Sprites scaling initiation
         self.SCREEN_SCALE = SCREEN_SCALE
@@ -75,16 +89,32 @@ class Engine(arcade.Window):
         self.restart = [False, False]
         self.text_list_collisions = []
 
-
     def setup(self):
         self.level = setup_test
         self.level.Engine.setup(self)
 
+    def on_stick_move(self, _joystick, axis, value):
+        self.player_controls.stick_move(self, axis, value)
+
+    def on_joybutton_press(self, _joystick, button):
+        print("Button {} down".format(button))
+
+
+    def on_joybutton_release(self, _joystick, button):
+        print("Button {} up".format(button))
+
+
+    def on_joyhat_motion (self, _joystick, hat_x, hat_y):
+        self.player_controls.hat_move(self, hat_x, hat_y)
+
+
     def on_key_press(self, key, modifiers):
         self.player_controls.key_press(self, key, modifiers)
 
+
     def on_key_release(self, key, modifiers):
         self.player_controls.key_release(self, key, modifiers)
+
 
     def on_update(self, delta_time: float):
         self.player_controls.update(self)

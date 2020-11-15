@@ -1,5 +1,9 @@
 import arcade
+
 import player_object
+
+DEAD_ZONE = 0.5
+
 
 class Engine(arcade.Window):
     def __init__(self):
@@ -11,6 +15,7 @@ class Engine(arcade.Window):
         self.keys_RIGHT = [arcade.key.RIGHT, arcade.key.D]
 
         self.key_debug = arcade.key.F3
+
 
     def key_press(self, key, modifiers):
 
@@ -50,6 +55,49 @@ class Engine(arcade.Window):
 
         if key == self.key_debug:
             self.debug_shown = not self.debug_shown
+
+
+    def hat_move(self, hat_x, hat_y):
+        if hat_x > 0:
+            self.RIGHT = True
+        elif hat_x < 0:
+            self.LEFT = True
+        else:
+            self.RIGHT = False
+            self.LEFT = False
+
+        if hat_y > 0:
+            self.UP = True
+        elif hat_y < 0:
+            self.DOWN = True
+        else:
+            self.UP = False
+            self.DOWN = False
+
+    def stick_move(self, axis, value):
+        if axis == 'x' and value > 0:
+            if value - DEAD_ZONE > 0:
+                self.RIGHT = True
+
+        elif axis == 'x' and value < 0:
+            if value + DEAD_ZONE < 0:
+                self.LEFT = True
+
+        if axis == 'x' and value < DEAD_ZONE and value > -DEAD_ZONE:
+            self.RIGHT = False
+            self.LEFT = False
+
+        if axis == 'y' and value > 0:
+            if value - DEAD_ZONE > 0:
+                self.DOWN = True
+
+        elif axis == 'y' and value < 0:
+            if value + DEAD_ZONE < 0:
+                self.UP = True
+
+        if axis == 'y' and value < DEAD_ZONE and value > -DEAD_ZONE:
+            self.UP = False
+            self.DOWN = False
 
 
     def update(self):

@@ -11,11 +11,13 @@ class Engine(arcade.Window):
         return [MARGIN_L + self.view_left,
                 self.SCREEN_H - FONT_H * LINE - self.debug_margin + self.view_bottom]
 
+
     def update(self, delta_time):
         self.text_local_frame_counter += 1
         self.text_global_frame_counter += 1
         if self.text_global_frame_counter % 10 == 0:
             self.text_FPS = round(1 / delta_time)
+
 
     def draw_text(self, text, LINE):
         pos = Engine.get_pos(self, LINE)
@@ -30,7 +32,8 @@ class Engine(arcade.Window):
                      f'FPS: {self.text_FPS}',
                      f'Center: X: {self.sprite_player.center_x}, Y: {self.sprite_player.center_y}',
                      f'Change: X: {self.sprite_player.change_x}, Y: {self.sprite_player.change_y}',
-                     f'Collisions: {self.text_list_collisions}']
+                     f'Collisions: {self.text_list_collisions}',
+                     f'U: {self.UP}, D: {self.DOWN}, L: {self.LEFT}, R: {self.RIGHT}']
 
             for i in range(len(LINES)):
                 LINE += 1

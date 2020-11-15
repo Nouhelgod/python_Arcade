@@ -70,18 +70,18 @@ class Engine(arcade.Window):
                 self.sprite_player.change_x = -self.player.speed
 
             if self.UP and self.LEFT:
-                self.sprite_player.change_y = self.player.speed // 2 +1
-                self.sprite_player.change_x = -self.player.speed // 2 +1
+                self.sprite_player.change_y = self.player.speed // 2 + 1
+                self.sprite_player.change_x = -self.player.speed // 2 - 1
 
             if self.UP and self.RIGHT:
-                self.sprite_player.change_y = self.player.speed // 2 +1
-                self.sprite_player.change_x = self.player.speed // 2 +1
+                self.sprite_player.change_y = self.player.speed // 2 + 1
+                self.sprite_player.change_x = self.player.speed // 2 + 1
 
             if self.DOWN and self.LEFT:
-                self.sprite_player.change_y = -self.player.speed // 2 +1
-                self.sprite_player.change_x = -self.player.speed // 2 +1
+                self.sprite_player.change_y = -self.player.speed // 2 - 1
+                self.sprite_player.change_x = -self.player.speed // 2 - 1
 
             if self.DOWN and self.RIGHT:
-                self.sprite_player.change_y = -self.player.speed // 2 +1
-                self.sprite_player.change_x = self.player.speed // 2 +1
+                self.sprite_player.change_y = -self.player.speed // 2 - 1
+                self.sprite_player.change_x = self.player.speed // 2 + 1
 

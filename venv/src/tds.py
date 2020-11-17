@@ -6,6 +6,8 @@ import player_controls
 import camera_controls
 import tile_collisions
 import UI
+import inventory
+
 
 SCREEN_W = 640
 SCREEN_H = 480
@@ -29,8 +31,8 @@ class Engine(arcade.Window):
             self.gamepad.on_joybutton_release = self.on_joybutton_release
             self.gamepad.on_joyhat_motion = self.on_joyhat_motion
             self.gamepad.on_joyaxis_motion = self.on_stick_move
+
         else:
-            print("There are no Joysticks")
             self.joystick = None
 
         # Sprites scaling initiation
@@ -48,6 +50,7 @@ class Engine(arcade.Window):
         self.list_tile = None
         self.list_wall = None
         self.list_water = None
+        self.list_ui_inventory = None
         
         # Sprite images initiation
         self.sprite_player = None
@@ -68,6 +71,11 @@ class Engine(arcade.Window):
         # Player controls initiation
         self.player_controls = player_controls.Engine
         self.player_controls.__init__(self)
+        self.can_move = True
+
+        # Invintory initiation
+        self.player_inventory = inventory.Engine
+        self.player_inventory.__init__(self)
 
         # Scrolling initiation
         self.view_bottom = 0
@@ -80,6 +88,7 @@ class Engine(arcade.Window):
         self.UI = UI
         self.debug_pos = 0
         self.debug_margin = 5
+        self.inventory = False
 
         # GUI text initiation
         self.debug_shown = False
@@ -89,19 +98,23 @@ class Engine(arcade.Window):
         self.restart = [False, False]
         self.text_list_collisions = []
 
+
     def setup(self):
         self.level = setup_test
         self.level.Engine.setup(self)
 
+
     def on_stick_move(self, _joystick, axis, value):
         self.player_controls.stick_move(self, axis, value)
 
+
     def on_joybutton_press(self, _joystick, button):
-        print("Button {} down".format(button))
+        print(button)
+        self.player_controls.key_press(self, button, None)
 
 
     def on_joybutton_release(self, _joystick, button):
-        print("Button {} up".format(button))
+        self.player_controls.key_release(self, button, None)
 
 
     def on_joyhat_motion (self, _joystick, hat_x, hat_y):
@@ -122,6 +135,7 @@ class Engine(arcade.Window):
         self.UI.Engine.update(self, delta_time)
         self.sprite_player.update()
         self.physics.update()
+        self.player_inventory.update(self)
 
         camera_controls.Engine.camera_follow(self)
 
@@ -134,6 +148,9 @@ class Engine(arcade.Window):
         self.list_water.draw()
         self.UI.Engine.draw_UI(self)
         self.UI.Engine.draw_debug(self)
+
+        if self.inventory:
+            self.player_inventory.update(self)
 
 
 def main():

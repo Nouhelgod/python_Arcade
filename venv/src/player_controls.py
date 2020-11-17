@@ -14,7 +14,11 @@ class Engine(arcade.Window):
         self.keys_LEFT = [arcade.key.LEFT, arcade.key.A]
         self.keys_RIGHT = [arcade.key.RIGHT, arcade.key.D]
 
-        self.key_debug = arcade.key.F3
+        self.key_debug = [arcade.key.F3, 6]
+        self.key_inventory = [arcade.key.I, 3]
+
+    def gamepad_key_press(self, key):
+        print(key)
 
 
     def key_press(self, key, modifiers):
@@ -53,8 +57,21 @@ class Engine(arcade.Window):
                 self.restart[1] = False
                 self.restart[0] = False
 
-        if key == self.key_debug:
+        # Debug
+        if key in self.key_debug:
             self.debug_shown = not self.debug_shown
+
+        # Inventory
+        if key in self.key_inventory:
+            if not self.inventory:
+                self.inventory = True
+                self.can_move = False
+
+            else:
+                self.inventory = False
+                self.can_move = True
+
+        # Menu
 
 
     def hat_move(self, hat_x, hat_y):
@@ -101,12 +118,12 @@ class Engine(arcade.Window):
 
 
     def update(self):
-        self.sprite_player.center_x = int(round(self.sprite_player.center_x))
-        self.sprite_player.center_y = int(round(self.sprite_player.center_y))
+        self.sprite_player.center_x = int(self.sprite_player.center_x)
+        self.sprite_player.center_y = int(self.sprite_player.center_y)
         self.sprite_player.change_y = 0
         self.sprite_player.change_x = 0
 
-        if 1:
+        if self.can_move:
             if self.UP and not self.DOWN:
                 self.sprite_player.change_y = self.player.speed
             elif self.DOWN and not self.UP:
@@ -118,16 +135,16 @@ class Engine(arcade.Window):
                 self.sprite_player.change_x = -self.player.speed
 
             if self.UP and self.LEFT:
-                self.sprite_player.change_y = self.player.speed // 2 + 1
-                self.sprite_player.change_x = -self.player.speed // 2 - 1
+                self.sprite_player.change_y = self.player.speed / 2 + 1
+                self.sprite_player.change_x = -self.player.speed / 2 - 1
 
             if self.UP and self.RIGHT:
-                self.sprite_player.change_y = self.player.speed // 2 + 1
-                self.sprite_player.change_x = self.player.speed // 2 + 1
+                self.sprite_player.change_y = self.player.speed / 2 + 1
+                self.sprite_player.change_x = self.player.speed / 2 + 1
 
             if self.DOWN and self.LEFT:
-                self.sprite_player.change_y = -self.player.speed // 2 - 1
-                self.sprite_player.change_x = -self.player.speed // 2 - 1
+                self.sprite_player.change_y = -self.player.speed / 2 - 1
+                self.sprite_player.change_x = -self.player.speed / 2 - 1
 
             if self.DOWN and self.RIGHT:
                 self.sprite_player.change_y = -self.player.speed // 2 - 1

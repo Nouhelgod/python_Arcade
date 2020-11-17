@@ -33,7 +33,8 @@ class Engine(arcade.Window):
                      f'Center: X: {self.sprite_player.center_x}, Y: {self.sprite_player.center_y}',
                      f'Change: X: {self.sprite_player.change_x}, Y: {self.sprite_player.change_y}',
                      f'Collisions: {self.text_list_collisions}',
-                     f'U: {self.UP}, D: {self.DOWN}, L: {self.LEFT}, R: {self.RIGHT}']
+                     f'U: {self.UP}, D: {self.DOWN}, L: {self.LEFT}, R: {self.RIGHT}',
+                     f'Inventory: {self.inventory}']
 
             for i in range(len(LINES)):
                 LINE += 1

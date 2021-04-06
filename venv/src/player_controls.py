@@ -1,6 +1,7 @@
 import arcade
 
 import player_object
+import inventory
 
 DEAD_ZONE = 0.5
 
@@ -19,6 +20,10 @@ class Engine(arcade.Window):
 
     def gamepad_key_press(self, key):
         print(key)
+
+    def mouse_move(self, x, y):
+        if self.inventory:
+            inventory.Engine.draw_selector(self, x, y)
 
 
     def key_press(self, key, modifiers):

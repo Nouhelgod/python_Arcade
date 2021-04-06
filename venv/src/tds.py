@@ -9,8 +9,8 @@ import UI
 import inventory
 
 
-SCREEN_W = 640
-SCREEN_H = 480
+SCREEN_W = 1280
+SCREEN_H = 720
 SCREEN_TITLE = 'Build'
 SPRITE_RESOLUTION = 16
 
@@ -104,6 +104,10 @@ class Engine(arcade.Window):
         self.level.Engine.setup(self)
 
 
+    def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
+        self.player_controls.mouse_move(self, x , y)
+
+
     def on_stick_move(self, _joystick, axis, value):
         self.player_controls.stick_move(self, axis, value)
 
@@ -151,6 +155,7 @@ class Engine(arcade.Window):
 
         if self.inventory:
             self.player_inventory.update(self)
+            self.list_ui_inventory.draw()
 
 
 def main():

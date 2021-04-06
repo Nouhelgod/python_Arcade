@@ -29,7 +29,7 @@ class Engine(arcade.Window):
             LINE = 0
             LINES = [f'Local frame: {self.text_local_frame_counter}',
                      f'Global frame: {self.text_global_frame_counter}',
-                     f'FPS: {self.text_FPS}',
+                     f'TPS: {self.text_FPS}',
                      f'Center: X: {self.sprite_player.center_x}, Y: {self.sprite_player.center_y}',
                      f'Change: X: {self.sprite_player.change_x}, Y: {self.sprite_player.change_y}',
                      f'Collisions: {self.text_list_collisions}',
